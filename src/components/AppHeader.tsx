@@ -14,7 +14,7 @@ const AppHeader = () => {
           size="icon"
           onClick={() =>
             window.open(
-              "https://hmarzban.github.io/notion-avatar-generator/",
+              "https://github.com/HMarzban/notion-avatar-generator",
               "_blank"
             )
           }

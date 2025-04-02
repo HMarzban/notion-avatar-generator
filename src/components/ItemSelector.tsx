@@ -78,7 +78,7 @@ const ItemSelector = ({
         onClick={() => onSelectItem(item)}
       >
         <div
-          className="flex justify-center items-center h-12 w-12 sm:h-16 sm:w-16 rounded-lg overflow-hidden"
+          className="flex justify-center items-center h-10 w-10 sm:h-14 sm:w-14 rounded-lg overflow-hidden"
           style={{ backgroundColor: bgColor as string }}
         >
           <img
@@ -89,7 +89,7 @@ const ItemSelector = ({
               ).href
             }
             alt={item}
-            className="h-8 w-8 sm:h-12 sm:w-12 object-contain max-w-full m-auto"
+            className="h-7 w-7 sm:h-10 sm:w-10 object-contain max-w-full m-auto"
           />
         </div>
       </div>
@@ -98,8 +98,8 @@ const ItemSelector = ({
 
   return (
     <div className="w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 sm:gap-0">
-        <h2 className="text-lg sm:text-xl font-semibold">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 sm:mb-4 gap-2 sm:gap-0">
+        <h2 className="text-base sm:text-lg font-semibold">
           {category.charAt(0).toUpperCase() + category.slice(1)} Options
         </h2>
         <div className="flex gap-2 w-full sm:w-auto justify-end">
@@ -107,17 +107,17 @@ const ItemSelector = ({
             onClick={handleRandomItem}
             variant="outline"
             size="sm"
-            className="flex items-center gap-1"
+            className="flex items-center gap-1 h-8 px-2 sm:px-3"
           >
-            <Shuffle className="h-3.5 w-3.5" />
-            <span className="sm:inline">Random</span>
+            <Shuffle className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+            <span>Random</span>
           </Button>
           {selectedItem && (
             <Button
               onClick={handleRemoveItem}
               variant="ghost"
               size="sm"
-              className="text-muted-foreground"
+              className="text-muted-foreground h-8 px-2 sm:px-3"
             >
               Remove
             </Button>
@@ -126,15 +126,15 @@ const ItemSelector = ({
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center h-24">
-          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        <div className="flex justify-center items-center h-16 sm:h-24">
+          <Loader2 className="h-5 w-5 sm:h-6 sm:w-6 animate-spin text-muted-foreground" />
         </div>
       ) : items.length > 0 ? (
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2 max-w-4xl mx-auto">
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2 sm:gap-3 max-h-[140px] sm:max-h-[180px] overflow-y-auto p-1">
           {items.map(renderItemPreview)}
         </div>
       ) : (
-        <div className="text-center py-6 text-muted-foreground">
+        <div className="text-center py-4 sm:py-6 text-muted-foreground text-sm sm:text-base">
           No items available for this category
         </div>
       )}

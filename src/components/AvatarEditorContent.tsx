@@ -20,27 +20,29 @@ const AvatarEditorContent = ({
   updateBackgroundColor,
 }: AvatarEditorContentProps) => {
   return (
-    <div className="p-6 flex flex-col items-center justify-center relative bg-muted/30 mt-4">
-      <ShapeControls
-        previewShape={previewShape}
-        setPreviewShape={setPreviewShape}
-        generateRandomAvatar={generateRandomAvatar}
-      />
+    <div className="p-3 sm:p-4 md:p-6 flex flex-col items-center justify-center relative bg-muted/30 mt-2 sm:mt-4">
+      {/* Top controls row */}
+      <div className="w-full flex flex-row justify-between items-center mb-3 sm:mb-4 md:mb-6">
+        <ShapeControls
+          previewShape={previewShape}
+          setPreviewShape={setPreviewShape}
+          generateRandomAvatar={generateRandomAvatar}
+        />
 
-      <div className="flex flex-col items-center">
-        <AvatarPreview selections={selections} shape={previewShape} />
-
-        <div className="mt-6 flex items-center gap-2">
-          <ExportOptions selections={selections} variant="outline" />
-        </div>
-      </div>
-
-      {/* Background color selector */}
-      <div className="absolute top-4 right-4">
         <BackgroundColorSelector
           selectedOption={selections.backgroundColor}
           onSelectOption={updateBackgroundColor}
         />
+      </div>
+
+      <div className="w-full flex flex-col items-center">
+        <div className="w-full px-0 sm:px-4 md:px-8">
+          <AvatarPreview selections={selections} shape={previewShape} />
+        </div>
+
+        <div className="mt-3 sm:mt-4 md:mt-6 flex items-center gap-2">
+          <ExportOptions selections={selections} variant="outline" />
+        </div>
       </div>
     </div>
   );

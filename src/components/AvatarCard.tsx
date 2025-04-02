@@ -19,15 +19,15 @@ const AvatarCard = () => {
   } = useAvatar();
 
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="pb-0">
+    <Card className="overflow-hidden w-full max-w-full sm:max-w-4xl">
+      <CardHeader className="pb-0 px-2 sm:px-6">
         <CategoryTabs
           selectedCategory={selectedCategory}
           onSelectCategory={(category) => setSelectedCategory(category)}
         />
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="px-2 sm:px-6">
         <AvatarEditorContent
           selections={selections}
           previewShape={previewShape}
@@ -37,7 +37,7 @@ const AvatarCard = () => {
         />
       </CardContent>
 
-      <CardFooter className="p-6 border-t">
+      <CardFooter className="p-4 sm:p-6 border-t">
         <ItemSelector
           category={selectedCategory}
           selectedItem={selections[selectedCategory]}

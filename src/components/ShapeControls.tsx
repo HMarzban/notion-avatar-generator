@@ -23,8 +23,8 @@ const ShapeControls = ({
   };
 
   return (
-    <div className="flex flex-col items-center space-y-3 p-4 absolute top-0 left-0">
-      <ButtonGroup orientation="vertical">
+    <div className="flex items-center gap-3">
+      <ButtonGroup>
         <Button
           variant={previewShape === "circle" ? "default" : "outline"}
           size="icon"

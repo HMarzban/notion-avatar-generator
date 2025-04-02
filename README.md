@@ -1,7 +1,7 @@
 # Notion-Style Avatar Creator
 
 <div align="center">
-  <img src="public/notion-style-avatart-creator.png" alt="Notion-Style Avatar Creator"  />
+  <img src="public/banner.png" alt="Notion-Style Avatar Creator"  />
 </div>
 
 A fun, customizable avatar generator inspired by Notion's minimalist aesthetic. Create your personal profile picture with a variety of face shapes, hairstyles, eyes, mouths, accessories, outfits, and backgrounds.
@@ -66,25 +66,10 @@ npm run preview
 - Vite
 - Tailwind CSS
 - Shadcn UI components
-- html-to-image (for exporting avatars)
-
-## Avatar Elements
-
-The project includes several categories of avatar components:
-
-- **Face**: Base face shapes and structures
-- **Hair**: Various hairstyles and colors
-- **Eyes**: Different eye styles and expressions
-- **Mouth**: Various mouth and lip shapes
-- **Accessories**: Glasses, earrings, and other add-ons
-- **Outfit**: Clothing options for your avatar
-- **Background**: Solid colors and background elements
 
 ## Credits
 
-Assets based on [Notion Avatar Creator](https://www.figma.com/community/file/1159777445438667306) by DrawKit.
-
-Special thanks to [DrawKit](https://www.drawkit.com/illustrations/notion-style-avatar-creator) for the amazing illustrations.
+Special thanks to [DrawKit](https://www.drawkit.com/illustrations/notion-style-avatar-creator) for the amazing illustrations. Checkout the [Figma](https://www.figma.com/community/file/1159777445438667306) for more details.  
 
 ## License
 

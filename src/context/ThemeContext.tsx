@@ -30,13 +30,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       return savedTheme;
     }
 
-    // Otherwise, check system preference
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      return "dark";
-    }
+    // // Otherwise, check system preference
+    // if (
+    //   window.matchMedia &&
+    //   window.matchMedia("(prefers-color-scheme: dark)").matches
+    // ) {
+    //   return "dark";
+    // }
 
     // Default to light
     return "light";

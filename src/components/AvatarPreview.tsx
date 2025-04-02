@@ -8,9 +8,6 @@ const AvatarPreview = ({
 }: AvatarPreviewProps) => {
   const avatarRef = useRef<HTMLDivElement>(null);
 
-  // Calculate size for the avatar preview
-  const size = 300;
-
   // Determine background style based on backgroundColor option
   const getBackgroundStyle = () => {
     if (!selections.backgroundColor) {
@@ -36,14 +33,10 @@ const AvatarPreview = ({
       ref={avatarRef}
       data-avatar-container
       className={cn(
-        "relative w-[300px] h-[300px] mx-auto overflow-hidden flex items-center justify-center shadow-xl",
+        "relative w-[200px] sm:w-[250px] md:w-[300px] aspect-square mx-auto overflow-hidden flex items-center justify-center shadow-xl",
         shape === "circle" ? "rounded-full" : "rounded-xl"
       )}
-      style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        ...getBackgroundStyle(),
-      }}
+      style={getBackgroundStyle()}
     >
       {/* Checkerboard pattern for transparent backgrounds */}
       {selections.backgroundColor?.type === "transparent" && (

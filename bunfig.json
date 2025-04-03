@@ -1,0 +1,6 @@
+{
+    "install": {
+        "exact": true,
+        "registry": "https://registry.npmjs.org/"
+    }
+}

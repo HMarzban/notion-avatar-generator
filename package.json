@@ -3,12 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "packageManager": "bun@latest",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "generate-pwa-assets": "pwa-assets-generator",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "dev": "bunx --bun vite",
+    "build": "bunx --bun tsc && bunx --bun vite build",
+    "generate-pwa-assets": "bunx --bun pwa-assets-generator",
+    "lint": "bunx --bun eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "bunx --bun vite preview",
+    "postinstall": "echo 'This project uses Bun (https://bun.sh)'"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",

@@ -27,23 +27,32 @@ Check out the live demo: [Notion Avatar Generator](https://hmarzban.github.io/no
 
 ## Getting Started
 
-```bash
-# Clone the repository
-git clone https://github.com/HMarzban/notion-avatar-generator.git
+## Requirements
 
-# Navigate to project directory
-cd notion-avatar-generator
+This project requires [Bun](https://bun.sh) as the package manager.
+
+```bash
+# Install Bun if you don't have it yet
+curl -fsSL https://bun.sh/install | bash
 
 # Install dependencies
-npm install
-# or with bun
 bun install
 
-# Start the development server
-npm run dev
-# or with bun
-bun run dev
+# Start development server
+bun dev
+
+# Build for production
+bun run build
 ```
+
+This project uses Bun exclusively and is not compatible with npm or yarn.
+
+## Development
+
+- `bun dev` - Start development server
+- `bun run build` - Build for production
+- `bun run lint` - Run linter
+- `bun run preview` - Preview production build locally
 
 Visit `http://localhost:3000` in your browser to start creating your avatar.
 
@@ -55,10 +64,10 @@ To deploy manually:
 
 ```bash
 # Build the project
-npm run build
+bun run build
 
 # Preview the build locally
-npm run preview
+bun run preview
 ```
 
 ## PWA Features

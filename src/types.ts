@@ -44,3 +44,26 @@ export interface ExportOptionsProps {
   variant?: "default" | "outline";
   isGrouped?: boolean;
 }
+
+// PWA related types
+export interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
+export interface PWARegisterOptions {
+  immediate?: boolean;
+  onNeedRefresh?: () => void;
+  onOfflineReady?: () => void;
+  onRegistered?: (registration: ServiceWorkerRegistration | undefined) => void;
+  onRegisterError?: (error: Error) => void;
+}
+
+// Global type for the PWA register function
+declare global {
+  interface Window {
+    __PWA_REGISTER_SW?: (
+      options?: PWARegisterOptions
+    ) => (reloadPage?: boolean) => Promise<void>;
+  }
+}

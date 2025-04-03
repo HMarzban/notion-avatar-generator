@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PWA Icons</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>PWA Icon Generator</h1>
+    <p>Click the button below to generate PWA icons from the source image.</p>
+    <div>
+        <img id="sourceImage" src="icon.png" style="max-width: 200px; display: block; margin-bottom: 20px;">
+        <button id="generate192">Generate 192x192 Icon</button>
+        <button id="generate512">Generate 512x512 Icon</button>
+    </div>
+    <div id="output" style="margin-top: 20px;"></div>
+
+    <script>
+        document.getElementById('generate192').addEventListener('click', () => generateIcon(192));
+        document.getElementById('generate512').addEventListener('click', () => generateIcon(512));
+
+        function generateIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            const img = document.getElementById('sourceImage');
+            ctx.drawImage(img, 0, 0, size, size);
+
+            const dataUrl = canvas.toDataURL('image/png');
+
+            // Create download link
+            const link = document.createElement('a');
+            link.download = `pwa-${ size }x${ size }.png`;
+            link.href = dataUrl;
+            link.textContent = `Download ${ size }x${ size } icon`;
+            link.style.display = 'block';
+            link.style.margin = '10px 0';
+
+            const output = document.getElementById('output');
+
+            // Display preview
+            const preview = document.createElement('div');
+            preview.style.marginBottom = '20px';
+
+            const previewImg = document.createElement('img');
+            previewImg.src = dataUrl;
+            previewImg.style.maxWidth = '100px';
+            previewImg.style.display = 'block';
+            previewImg.style.marginBottom = '5px';
+
+            preview.appendChild(previewImg);
+            preview.appendChild(link);
+
+            output.appendChild(preview);
+
+            // Auto-click the download link
+            link.click();
+        }
+    </script>
+</body>
+
+</html>

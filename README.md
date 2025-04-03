@@ -22,6 +22,8 @@ Check out the live demo: [Notion Avatar Generator](https://hmarzban.github.io/no
 - 💾 Export as PNG or SVG - Download your creation in your preferred format
 - 🌗 Dark/Light mode - Switch between themes for comfortable editing
 - 🔄 Randomize - Generate random avatars with one click
+- 📱 PWA Support - Install as a standalone app on your device
+- 🔌 Complete Offline Support - Create avatars even without an internet connection with automatic asset caching
 
 ## Getting Started
 
@@ -59,6 +61,40 @@ npm run build
 npm run preview
 ```
 
+## PWA Features
+
+This app supports Progressive Web App (PWA) functionality, which means you can:
+
+- Install it on your home screen on mobile devices
+- Use it offline without an internet connection
+- Get automatic updates when new versions are available
+
+### Enhanced Offline Support
+
+The app intelligently caches all avatar assets for offline use, providing a complete experience even without internet connection:
+
+- **Automatic Asset Caching**: When you first install the PWA, all avatar elements are automatically cached
+- **Smart Caching Strategy**: Assets are cached using an efficient strategy that preserves storage space
+- **Network Status Indicators**: Clear UI indicators show when you're offline
+- **Manual Cache Control**: Options to manually refresh the cache when online
+- **Persistent Usage**: Create and download avatars even when completely offline
+
+### Easy Installation
+
+Installing the app is simple:
+
+1. Look for the "Install for Offline Use" button that appears at the bottom right of the app
+2. Click the button and follow the browser's installation prompts
+3. The app will be installed on your device and available even when offline
+4. On iOS devices, use Safari's "Add to Home Screen" option from the share menu
+
+Once installed, the app will run like a native application with these benefits:
+
+- Fast loading times
+- No internet connection required
+- All avatar assets available offline
+- Full functionality without a browser
+
 ## Built With
 
 - React
@@ -66,6 +102,8 @@ npm run preview
 - Vite
 - Tailwind CSS
 - Shadcn UI components
+- Vite PWA Plugin
+- Workbox (for advanced PWA caching)
 
 ## Credits
 

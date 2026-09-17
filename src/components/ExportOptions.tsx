@@ -41,6 +41,7 @@ const ExportOptions = ({
           isGrouped ? "rounded-l-none border-l-0" : ""
         }`}
         aria-label="Export as SVG"
+        aria-describedby="export-format-note"
       >
         SVG
       </Button>

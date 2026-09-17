@@ -43,6 +43,9 @@ const AvatarEditorContent = ({
         <div className="mt-3 sm:mt-4 md:mt-6 flex items-center gap-2">
           <ExportOptions selections={selections} variant="outline" />
         </div>
+        <p id="export-format-note" className="mt-2 max-w-sm text-center text-xs text-muted-foreground">
+          PNG is 1024 × 1024. SVG contains a PNG image; its avatar parts cannot be edited as vectors.
+        </p>
       </div>
     </div>
   );

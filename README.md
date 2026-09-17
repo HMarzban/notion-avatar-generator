@@ -39,7 +39,7 @@ The browser tests in `tests/avatar.spec.ts` exercise category selection, removal
 
 ## Requirements
 
-This project requires [Bun](https://bun.sh) as the package manager.
+This project uses [Bun](https://bun.sh) as the package manager. Node.js 20+ is needed by the Playwright browser test runner; CI uses Node 22.
 
 ```bash
 # Install Bun if you don't have it yet

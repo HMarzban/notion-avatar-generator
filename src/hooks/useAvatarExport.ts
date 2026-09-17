@@ -22,10 +22,11 @@ export const useAvatarExport = (selections: AvatarSelections) => {
       return;
     }
 
+    let tempContainer: HTMLDivElement | undefined;
     try {
       const isCircle = isCircular(element);
       const bgColor = getBackgroundColor();
-      const tempContainer = prepareExportContainer(element);
+      tempContainer = prepareExportContainer(element);
       const clone = tempContainer.firstChild as HTMLElement;
 
       // Use html-to-image to render with transparency
@@ -38,7 +39,7 @@ export const useAvatarExport = (selections: AvatarSelections) => {
           margin: "0",
           padding: "0",
         },
-        cacheBust: true,
+        cacheBust: false, // Keep asset URLs compatible with the offline cache.
       });
 
       // Clean up DOM
@@ -46,16 +47,18 @@ export const useAvatarExport = (selections: AvatarSelections) => {
 
       // Create final image with proper shape and background
       const img = new Image();
-      img.src = dataUrl;
-
-      await new Promise((resolve) => {
-        img.onload = resolve;
+      await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = () => reject(new Error("Could not load the rendered avatar"));
+        img.src = dataUrl;
       });
 
       const finalDataUrl = await renderFinalPng(img, isCircle, bgColor);
       downloadFile(finalDataUrl, "notion-avatar.png");
     } catch (error) {
       console.error("Error exporting as PNG:", error);
+    } finally {
+      tempContainer?.remove();
     }
   };
 
@@ -66,12 +69,13 @@ export const useAvatarExport = (selections: AvatarSelections) => {
       return;
     }
 
+    let tempContainer: HTMLDivElement | undefined;
     try {
       const isCircle = isCircular(element);
       const bgColor = getBackgroundColor();
 
       // Generate the final output with html-to-image
-      const tempContainer = prepareExportContainer(element);
+      tempContainer = prepareExportContainer(element);
       const clone = tempContainer.firstChild as HTMLElement;
 
       // Use PNG as base and convert to SVG
@@ -85,7 +89,7 @@ export const useAvatarExport = (selections: AvatarSelections) => {
           padding: "0",
           borderRadius: isCircle ? "50%" : "0",
         },
-        cacheBust: true,
+        cacheBust: false, // Keep asset URLs compatible with the offline cache.
       });
 
       document.body.removeChild(tempContainer);
@@ -153,6 +157,8 @@ export const useAvatarExport = (selections: AvatarSelections) => {
       downloadFile(svgData, "notion-avatar.svg");
     } catch (error) {
       console.error("Error exporting as SVG:", error);
+    } finally {
+      tempContainer?.remove();
     }
   };
 

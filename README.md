@@ -19,11 +19,21 @@ Check out the live demo: [Notion Avatar Generator](https://hmarzban.github.io/no
 - 👓 Accessories - Enhance your avatar with glasses, earrings, and more
 - 👕 Outfits - Dress your avatar with different clothing options
 - 🎨 Backgrounds - Set solid colors or add background elements
-- 💾 Export as PNG or SVG - Download your creation in your preferred format
+- 💾 Export a 1024 × 1024 PNG, or an SVG file with an embedded PNG image (not editable vector parts)
 - 🌗 Dark/Light mode - Switch between themes for comfortable editing
 - 🔄 Randomize - Generate random avatars with one click
 - 📱 PWA Support - Install as a standalone app on your device
-- 🔌 Complete Offline Support - Create avatars even without an internet connection with automatic asset caching
+- 🔌 Offline use after the app and its assets have been cached during an online visit
+
+## Export formats
+
+PNG exports are 1024 × 1024 pixels, with the selected background and circle/square shape. Transparent exports omit the preview checkerboard. SVG export wraps a rendered PNG in an SVG document with a 1024 × 1024 viewBox; individual avatar parts are not editable vector paths, and enlarging the image can reveal pixels. Choose PNG for ordinary profile pictures. Genuine vector composition would require a different export pipeline.
+
+## Engineering decisions and limits
+
+React context owns the selected avatar parts, background, and shape. The preview composes local DrawKit SVG assets as image layers; `html-to-image` captures that composition and the export helpers apply the output shape. Export runs in the browser without an upload server. It reuses stable asset URLs so cached images remain available offline, and removes temporary export elements even when rendering fails. Selections are held in memory, so reloading starts a new avatar.
+
+The browser tests in `tests/avatar.spec.ts` exercise category selection, removal, image dimensions, transparent/circular backgrounds, SVG content, and offline reload after service-worker activation. They run in Chromium; Safari and Firefox export/PWA behavior is not covered by this suite.
 
 ## Getting Started
 
@@ -52,6 +62,7 @@ This project uses Bun exclusively and is not compatible with npm or yarn.
 - `bun dev` - Start development server
 - `bun run build` - Build for production
 - `bun run lint` - Run linter
+- `bun run test` - Run Chromium browser tests (first run: `bunx playwright install chromium`)
 - `bun run preview` - Preview production build locally
 
 Visit `http://localhost:3000` in your browser to start creating your avatar.
@@ -80,9 +91,9 @@ This app supports Progressive Web App (PWA) functionality, which means you can:
 
 ### Enhanced Offline Support
 
-The app intelligently caches all avatar assets for offline use, providing a complete experience even without internet connection:
+Offline use needs a successful online first visit and completed asset caching. Browser storage eviction or clearing site data removes that cache; installing the app alone does not guarantee every asset is ready. The app provides:
 
-- **Automatic Asset Caching**: When you first install the PWA, all avatar elements are automatically cached
+- **Automatic Asset Caching**: The service worker and asset cache populate while online
 - **Smart Caching Strategy**: Assets are cached using an efficient strategy that preserves storage space
 - **Network Status Indicators**: Clear UI indicators show when you're offline
 - **Manual Cache Control**: Options to manually refresh the cache when online
@@ -100,8 +111,7 @@ Installing the app is simple:
 Once installed, the app will run like a native application with these benefits:
 
 - Fast loading times
-- No internet connection required
-- All avatar assets available offline
+- Offline use of successfully cached app files and avatar assets
 - Full functionality without a browser
 
 ## Built With

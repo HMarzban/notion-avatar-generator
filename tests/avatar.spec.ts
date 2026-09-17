@@ -113,3 +113,18 @@ test("cached production app reloads offline and still customizes and exports", a
   await eyes.evaluate((image) => (image as HTMLImageElement).decode());
   expect((await inspectPng(page, await exportFile(page, "PNG"))).width).toBe(1024);
 });
+
+test("a failed render removes temporary elements and allows a later export", async ({ page }) => {
+  await page.evaluate(() => {
+    const original = HTMLCanvasElement.prototype.toDataURL;
+    HTMLCanvasElement.prototype.toDataURL = function () {
+      HTMLCanvasElement.prototype.toDataURL = original;
+      throw new Error("Simulated image encoding failure");
+    };
+  });
+  const failure = page.waitForEvent("console", (message) => message.text().includes("Error exporting as PNG"));
+  await page.getByRole("button", { name: "Export as PNG", exact: true }).click();
+  await failure;
+  await expect(page.locator('[style*="left: -9999px"]')).toHaveCount(0);
+  expect((await inspectPng(page, await exportFile(page, "PNG"))).width).toBe(1024);
+});
